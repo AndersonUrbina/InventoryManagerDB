@@ -51,7 +51,7 @@ namespace InventoryManagerDb
             string sql = "SELECT Id, Name, Category, Quantity, Price FROM Products WHERE 1=1";
             using var cmd = new SQLiteCommand(conn);
 
-            //Create some validation to add parameters if the name or category is unclear
+            //Create some validation to add parameters if the name or category is unclear 
             if (!string.IsNullOrWhiteSpace(nameLike))
             {
                 sql += " AND Name LIKE @n";
