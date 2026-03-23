@@ -216,7 +216,7 @@ namespace InventoryManagerDb
                     return;
                 }
 
-                var answer = MessageBox.Show($"Delete Product Id {id}", "Confirm Delete", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                var answer = MessageBox.Show($"Delete Product Id {id}", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (answer != DialogResult.Yes) return;
 
                 Db.Delete(id);
