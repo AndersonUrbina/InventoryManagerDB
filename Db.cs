@@ -104,13 +104,24 @@ namespace InventoryManagerDb
 			if (p.Id <= 0) throw new ArgumentException("Valid Id required to update.");
             using var conn = new SQLiteConnection(ConnStr);
             conn.Open();
-            
-			//Create a string named sql with an Update query
-			
-			//Then create a command and add the update parameters
-			
-			//Use ExecuteNonQuery() to run this one
-            
+
+            //Create a string named sql with an Update query
+            string sql = 
+                @"
+                    UPDATE Products
+                    SET Name=@name, Category=@cat, Quantity=@qty, Price=@price
+                    WHERE Id = @id;
+                ";
+            //Then create a command and add the update parameters
+            using var cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@name", p.Name);
+            cmd.Parameters.AddWithValue("@cat", p.Category);
+            cmd.Parameters.AddWithValue("@qty", p.Quantity);
+            cmd.Parameters.AddWithValue("@price", p.Price);
+            cmd.Parameters.AddWithValue("@id", p.Id);
+
+            //Use ExecuteNonQuery() to run this one
+            cmd.ExecuteNonQuery();
         }
 
         public static void Delete(long id)
