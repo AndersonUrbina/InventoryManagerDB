@@ -194,7 +194,7 @@ namespace InventoryManagerDb
                     throw new ArgumentException("Select a product row first");
 
                 var (name, cat, qty, price) = ReadInputsForWrite();
-                Db.Update(new Product(name, cat, qty, price));
+                Db.Update(new Product(name, cat, qty, price, id));
                 RefreshGrid();
                 SetStatus("Product Updated.");
             }
@@ -222,7 +222,7 @@ namespace InventoryManagerDb
                 Db.Delete(id);
                 RefreshGrid();
                 ClearInputs();
-                SetStatus("Product Delted.");
+                SetStatus("Product Deleted.");
 
             }
             catch (Exception ex)
